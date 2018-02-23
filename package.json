@@ -12,6 +12,7 @@
     "start": "babel-node --presets es2015,es2017 pollTreeDeePrinter.js"
   },
   "devDependencies": {
-    "babel-plugin-transform-flow-strip-types": "^6.22.0"
+    "babel-plugin-transform-flow-strip-types": "^6.22.0",
+    "babel-preset-env": "^1.6.1"
   }
 }

@@ -18,14 +18,25 @@ const request = async (path: string) => {
 };
 
 const poll = async () => {
-  const status = await request('/printer/status');
-  const job = await request('/print_job');
-
   const database = firebase.database();
-
   const threeDeePrinter = database.ref('/3dprint');
-  await threeDeePrinter.child('/job').update(job);
-  await threeDeePrinter.child('/status').update({status: status});
+
+  try {
+    const status = await request('/printer/status');
+    console.log(status);
+    await threeDeePrinter.child('/status').update({ status: status });
+  } catch (err) {
+    console.log("Status fetch failed");
+  }
+
+  try {
+    const job = await request('/print_job');
+    console.log(job);
+    await threeDeePrinter.child('/job').update(job);
+  } catch (err) {
+    console.log("Job fetch failed");
+    await threeDeePrinter.child('/job').remove();
+  }
 
   firebase.database().goOffline();
 };

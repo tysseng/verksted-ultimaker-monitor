@@ -1,5 +1,6 @@
 import 'babel-polyfill';
 import fs from 'fs';
+import ip from 'ip';
 import promisify from 'util.promisify';
 import fetch from 'node-fetch';
 import deepEqual from 'deep-equal';
@@ -62,12 +63,13 @@ const writeStatusToFirebase = async (response) => {
     .then(json => console.log(json));
 };
 
-
 const poll = async () => {
 
   const treeDeePrinterResponse = {
     status: await get3DPrinterStatus(),
     job: await get3DPrinterJob(),
+    monitorIp: ip.address(),
+    printerIp: ip.address(),
   };
 
   const previousResponse = await loadPreviousResponseFromFile();

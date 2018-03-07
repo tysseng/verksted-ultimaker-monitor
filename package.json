@@ -6,6 +6,7 @@
     "babel-preset-es2017": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "deep-equal": "^1.0.1",
+    "ip": "^1.1.5",
     "node-fetch": "^2.0.0",
     "util.promisify": "^1.0.0"
   },
